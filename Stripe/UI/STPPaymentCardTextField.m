@@ -112,7 +112,7 @@ CGFloat const STPPaymentCardTextFieldDefaultPadding = 10;
     
     STPFormTextField *zipField = [self buildTextField];
     zipField.tag = STPCardFieldTypeZIP;
-    zipField.placeholder = @"12345";
+    zipField.placeholder = @"ZIP";
     zipField.alpha = 0;
     self.zipField = zipField;
     
@@ -403,11 +403,11 @@ CGFloat const STPPaymentCardTextFieldDefaultPadding = 10;
     self.expirationField.frame = CGRectMake(expirationX, 0, expirationWidth, self.frame.size.height);
     
     CGFloat cvcWidth = MAX([self widthForText:self.cvcField.placeholder], [self widthForText:@"8888"]);
-    CGFloat cvcX = CGRectGetMaxX(self.expirationField.frame) + STPPaymentCardTextFieldDefaultPadding;
+    CGFloat cvcX = CGRectGetMaxX(self.expirationField.frame);
     self.cvcField.frame = CGRectMake(cvcX, 0, cvcWidth, self.frame.size.height);
     
     CGFloat zipWidth = MAX([self widthForText:self.zipField.placeholder], [self widthForText:@"88888"]);
-    CGFloat zipX = CGRectGetMaxX(self.expirationField.frame) + STPPaymentCardTextFieldDefaultPadding;
+    CGFloat zipX = CGRectGetMaxX(self.cvcField.frame);
     self.zipField.frame = CGRectMake(zipX, 0, zipWidth, self.frame.size.height);
     
 }
