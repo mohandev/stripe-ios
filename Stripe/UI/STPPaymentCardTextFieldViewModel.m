@@ -96,6 +96,12 @@
         }
         case STPCardFieldTypeCVC:
             return [STPCardValidator validationStateForCVC:self.cvc cardBrand:self.brand];
+            break;
+        
+        case STPCardFieldTypeZIP:
+            return [STPCardValidator validationStateForZIP:self.zip];
+            break;
+            
     }
 }
 
@@ -147,7 +153,8 @@
 - (BOOL)isValid {
     return ([self validationStateForField:STPCardFieldTypeNumber] == STPCardValidationStateValid &&
             [self validationStateForField:STPCardFieldTypeExpiration] == STPCardValidationStateValid &&
-            [self validationStateForField:STPCardFieldTypeCVC] == STPCardValidationStateValid);
+            [self validationStateForField:STPCardFieldTypeCVC] == STPCardValidationStateValid &&
+            [self validationStateForField:STPCardFieldTypeZIP] == STPCardValidationStateValid);
 }
 
 - (NSString *)placeholder {

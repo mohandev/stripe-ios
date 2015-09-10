@@ -134,6 +134,11 @@
  */
 @property(nonatomic, readonly, nullable) NSString *cvc;
 
+/** 
+ * The current card ZIP displayed by the filed. May or may not be valid, unless isValid is true, in which case it is guaranteed to be valid.
+ */
+@property(nonatomic, readonly, nullable) NSString *zip;
+
 /**
  *  Convenience method to create a STPCard from the currently entered information. Will return nil if not valid.
  */

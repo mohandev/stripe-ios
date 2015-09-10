@@ -104,6 +104,25 @@
     }
 }
 
++ (NSUInteger)zipCodeLength {
+    return 5;
+}
+
++ (STPCardValidationState)validationStateForZIP:(nonnull NSString *)zip {
+    NSString *regexPattern = @"\\d{5}([ \\-]\\d{4})?";
+
+    NSPredicate *zipTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regexPattern];
+    if (zip.length < self.zipCodeLength) {
+        return STPCardValidationStateIncomplete;
+    }
+    else if ([zipTest evaluateWithObject:zip]) {
+        return STPCardValidationStateValid;
+    }
+    else {
+        return STPCardValidationStateInvalid;
+    }
+}
+
 + (STPCardValidationState)validationStateForNumber:(nonnull NSString *)cardNumber
                                validatingCardBrand:(BOOL)validatingCardBrand {
     

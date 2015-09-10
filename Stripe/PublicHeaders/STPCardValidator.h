@@ -84,6 +84,20 @@
  */
 + (STPCardValidationState)validationStateForCVC:(nonnull NSString *)cvc cardBrand:(STPCardBrand)brand;
 
+/** 
+ Returns valid zip code length
+ */
++ (NSUInteger)zipCodeLength;
+
+/** 
+ Validates a U.S ZIP code, passed as numeric string
+ 
+ @param zip, the zip code to validate
+ 
+ @return if the zip code length is less than 5 (zipCodeLength) then STPCardValidationStateIncomplete, if it contains any non-numberic charactors then STPCardValidationStateInValid is returned. When validating with valid zip code, then it returns STPCardValidationStateValid
+ */
++ (STPCardValidationState)validationStateForZIP:(nonnull NSString *)zip;
+
 // Exposed for testing only.
 + (STPCardValidationState)validationStateForExpirationYear:(nonnull NSString *)expirationYear inMonth:(nonnull NSString *)expirationMonth inCurrentYear:(NSInteger)currentYear currentMonth:(NSInteger)currentMonth;
 
