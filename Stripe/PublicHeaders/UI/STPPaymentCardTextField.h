@@ -117,7 +117,7 @@
 /**
  *  The current card number displayed by the field. May or may not be valid, unless isValid is true, in which case it is guaranteed to be valid.
  */
-@property(nonatomic, readonly, nullable) NSString *cardNumber;
+@property(nonatomic, readwrite, nullable) NSString *cardNumber;
 
 /**
  *  The current expiration month displayed by the field (1 = January, etc). May or may not be valid, unless isValid is true, in which case it is guaranteed to be valid.

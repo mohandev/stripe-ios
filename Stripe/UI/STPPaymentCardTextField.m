@@ -345,6 +345,10 @@ CGFloat const STPPaymentCardTextFieldDefaultPadding = 10;
     return self.viewModel.cardNumber;
 }
 
+- (void)setCardNumber:(NSString *)cardNumber {
+    [self textField:self.numberField shouldChangeCharactersInRange:NSMakeRange(0, self.cardNumber.length) replacementString:cardNumber];
+}
+
 - (NSUInteger)expirationMonth {
     return [self.viewModel.expirationMonth integerValue];
 }
