@@ -34,7 +34,7 @@
     self.navigationItem.rightBarButtonItem = saveButton;
     
     // Setup payment view
-    STPPaymentCardTextField *paymentTextField = [[STPPaymentCardTextField alloc] init];
+    STPPaymentCardTextField *paymentTextField = [[STPPaymentCardTextField alloc] initWithFrame:CGRectZero scanButtonEnabled:YES];
     paymentTextField.delegate = self;
     self.paymentTextField = paymentTextField;
     [self.view addSubview:paymentTextField];

@@ -75,8 +75,8 @@ CGFloat const STPPaymentCardTextFieldDefaultPadding = 10;
 - (instancetype)initWithFrame:(CGRect)frame scanButtonEnabled:(BOOL)scanButtonEnabled {
     self = [super initWithFrame:frame];
     if (self) {
-        [self commonInit];
         _scanButtonEnabled = scanButtonEnabled;
+        [self commonInit];
     }
     return self;
 }
@@ -128,6 +128,7 @@ CGFloat const STPPaymentCardTextFieldDefaultPadding = 10;
     if (self.scanButtonEnabled) {
         scanButton = [STPFormScanButton formScanButton];
         scanButton.frame = CGRectZero;
+        [scanButton addTarget:self action:@selector(scanCardTapped:) forControlEvents:UIControlEventTouchUpInside];
         self.scanButton = scanButton;
     }
     
@@ -435,9 +436,10 @@ CGFloat const STPPaymentCardTextFieldDefaultPadding = 10;
     
     if (self.scanButtonEnabled) {
         if (!self.numberFieldShrunk) {
-            CGFloat scanBtnWidth = (CGRectGetMaxX(self.fieldsView.frame) - CGRectGetMaxX(self.numberField.frame));
-            CGFloat scanBtnHeight = CGRectGetMaxY(self.numberField.frame);
-            self.scanButton.frame = CGRectMake(CGRectGetMaxX(self.numberField.frame), 0, scanBtnWidth, scanBtnHeight);
+            CGFloat scanBtnWidth = (CGRectGetWidth(self.fieldsView.frame) - CGRectGetWidth(self.numberField.frame));
+            CGFloat scanBtnHeight = CGRectGetHeight(self.numberField.frame);
+            CGFloat scanBtnX = CGRectGetMaxX(self.numberField.frame);
+            self.scanButton.frame = CGRectMake(scanBtnX, 0, scanBtnWidth, scanBtnHeight);
         }
         else {
             self.scanButton.frame = CGRectZero;

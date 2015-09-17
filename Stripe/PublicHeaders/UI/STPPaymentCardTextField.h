@@ -155,7 +155,12 @@
  */
 @property(nonatomic, readonly, nullable) STPCard *card;
 
-
+/**
+ * Designated initializer.
+ * @param frame - frame for the card text filed
+ * @param scanButtonEnabled - YES / NO
+ */
+- (_Null_unspecified instancetype)initWithFrame:(CGRect)frame scanButtonEnabled:(BOOL)scanButtonEnabled;
 
 @end
 

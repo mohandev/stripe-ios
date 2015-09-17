@@ -11,11 +11,19 @@
 @implementation STPFormScanButton
 
 + (instancetype)formScanButton {
-    STPFormScanButton *scanBtn = [[STPFormScanButton alloc] initWithFrame:CGRectMake(0, 0, 45.0, 45.0)];
-    [scanBtn setImage:[UIImage imageNamed:@"icon-scan-card"] forState:UIControlStateNormal];
-    scanBtn.contentMode = UIViewContentModeCenter;
+    STPFormScanButton *scanBtn = [STPFormScanButton buttonWithType:UIButtonTypeCustom];
+    scanBtn.contentMode = UIViewContentModeRight;
+    
+    [scanBtn setImage:[self safeImageNamed:@"icon-scan-card"] forState:UIControlStateNormal];
     
     return scanBtn;
+}
+
++ (UIImage *)safeImageNamed:(NSString *)imageName {
+    if ([[UIImage class] respondsToSelector:@selector(imageNamed:inBundle:compatibleWithTraitCollection:)]) {
+        return [UIImage imageNamed:imageName inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:nil];
+    }
+    return [UIImage imageNamed:imageName];
 }
 
 @end
