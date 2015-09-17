@@ -306,6 +306,13 @@
 		04EBC7581B7533C300A0E6AE /* STPCardValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 04EBC7521B7533C300A0E6AE /* STPCardValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		04EBC7591B7533C300A0E6AE /* STPCardValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 04EBC7521B7533C300A0E6AE /* STPCardValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		04EBC75A1B7533C300A0E6AE /* STPCardValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 04EBC7521B7533C300A0E6AE /* STPCardValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		438A71AC1BAB3A7A00B5F4E9 /* STPFormScanButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 438A71AA1BAB3A7A00B5F4E9 /* STPFormScanButton.h */; settings = {ASSET_TAGS = (); }; };
+		438A71AD1BAB3A7A00B5F4E9 /* STPFormScanButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 438A71AA1BAB3A7A00B5F4E9 /* STPFormScanButton.h */; settings = {ASSET_TAGS = (); }; };
+		438A71AE1BAB3A7A00B5F4E9 /* STPFormScanButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 438A71AB1BAB3A7A00B5F4E9 /* STPFormScanButton.m */; settings = {ASSET_TAGS = (); }; };
+		438A71AF1BAB3A7A00B5F4E9 /* STPFormScanButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 438A71AB1BAB3A7A00B5F4E9 /* STPFormScanButton.m */; settings = {ASSET_TAGS = (); }; };
+		438A71B31BAB3D1400B5F4E9 /* icon-scan-card.png in Resources */ = {isa = PBXBuildFile; fileRef = 438A71B01BAB3D1400B5F4E9 /* icon-scan-card.png */; settings = {ASSET_TAGS = (); }; };
+		438A71B41BAB3D1400B5F4E9 /* icon-scan-card@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 438A71B11BAB3D1400B5F4E9 /* icon-scan-card@2x.png */; settings = {ASSET_TAGS = (); }; };
+		438A71B51BAB3D1400B5F4E9 /* icon-scan-card@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 438A71B21BAB3D1400B5F4E9 /* icon-scan-card@3x.png */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -460,6 +467,11 @@
 		04F39F231AEF2AFE005B926E /* StripeOSXTests-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "StripeOSXTests-Release.xcconfig"; sourceTree = "<group>"; };
 		04F39F241AEF2AFE005B926E /* StripeOSXTests-Shared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "StripeOSXTests-Shared.xcconfig"; sourceTree = "<group>"; };
 		11C74B9B164043050071C2CA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		438A71AA1BAB3A7A00B5F4E9 /* STPFormScanButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPFormScanButton.h; sourceTree = "<group>"; };
+		438A71AB1BAB3A7A00B5F4E9 /* STPFormScanButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPFormScanButton.m; sourceTree = "<group>"; };
+		438A71B01BAB3D1400B5F4E9 /* icon-scan-card.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-scan-card.png"; sourceTree = "<group>"; };
+		438A71B11BAB3D1400B5F4E9 /* icon-scan-card@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-scan-card@2x.png"; sourceTree = "<group>"; };
+		438A71B21BAB3D1400B5F4E9 /* icon-scan-card@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-scan-card@3x.png"; sourceTree = "<group>"; };
 		4A0D74F918F6106100966D7B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		FAFC12C516E5767F0066297F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -520,6 +532,8 @@
 				0438EF271B7416BB00D506CC /* STPFormTextField.m */,
 				0438EF2A1B7416BB00D506CC /* STPPaymentCardTextFieldViewModel.h */,
 				0438EF2B1B7416BB00D506CC /* STPPaymentCardTextFieldViewModel.m */,
+				438A71AA1BAB3A7A00B5F4E9 /* STPFormScanButton.h */,
+				438A71AB1BAB3A7A00B5F4E9 /* STPFormScanButton.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -535,6 +549,9 @@
 		0438EF881B741C2800D506CC /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				438A71B01BAB3D1400B5F4E9 /* icon-scan-card.png */,
+				438A71B11BAB3D1400B5F4E9 /* icon-scan-card@2x.png */,
+				438A71B21BAB3D1400B5F4E9 /* icon-scan-card@3x.png */,
 				0438EF891B741C2800D506CC /* stp_card_amex.png */,
 				0438EF8A1B741C2800D506CC /* stp_card_amex@2x.png */,
 				0438EF8B1B741C2800D506CC /* stp_card_amex@3x.png */,
@@ -764,6 +781,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04EBC7561B7533C300A0E6AE /* STPCardValidationState.h in Headers */,
+				438A71AD1BAB3A7A00B5F4E9 /* STPFormScanButton.h in Headers */,
 				04EBC75A1B7533C300A0E6AE /* STPCardValidator.h in Headers */,
 				049E84D91A605EF0000B66CD /* Stripe.h in Headers */,
 				049E84DA1A605EF0000B66CD /* STPAPIClient+ApplePay.h in Headers */,
@@ -796,6 +814,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04EBC7531B7533C300A0E6AE /* STPCardValidationState.h in Headers */,
+				438A71AC1BAB3A7A00B5F4E9 /* STPFormScanButton.h in Headers */,
 				04EBC7571B7533C300A0E6AE /* STPCardValidator.h in Headers */,
 				04CDB4EE1A5F30A700B854EE /* STPColorUtils.h in Headers */,
 				04CDB4F61A5F30A700B854EE /* STPOSXCheckoutWebViewAdapter.h in Headers */,
@@ -1044,6 +1063,7 @@
 				0438EFC61B741C2800D506CC /* stp_card_jcb@3x.png in Resources */,
 				0438EFC21B741C2800D506CC /* stp_card_jcb.png in Resources */,
 				042CA1B61B7BD84100AF0DA6 /* stp_card_placeholder_template.png in Resources */,
+				438A71B31BAB3D1400B5F4E9 /* icon-scan-card.png in Resources */,
 				0438EFD61B741C2800D506CC /* stp_card_visa@2x.png in Resources */,
 				0438EFD21B741C2800D506CC /* stp_card_placeholder@3x.png in Resources */,
 				0438EFB01B741C2800D506CC /* stp_card_cvc_amex.png in Resources */,
@@ -1057,8 +1077,10 @@
 				0438EFB61B741C2800D506CC /* stp_card_diners.png in Resources */,
 				0438EFAE1B741C2800D506CC /* stp_card_cvc@3x.png in Resources */,
 				0438EFBE1B741C2800D506CC /* stp_card_discover@2x.png in Resources */,
+				438A71B51BAB3D1400B5F4E9 /* icon-scan-card@3x.png in Resources */,
 				0438EFC01B741C2800D506CC /* stp_card_discover@3x.png in Resources */,
 				0438EFB41B741C2800D506CC /* stp_card_cvc_amex@3x.png in Resources */,
+				438A71B41BAB3D1400B5F4E9 /* icon-scan-card@2x.png in Resources */,
 				0438EFB81B741C2800D506CC /* stp_card_diners@2x.png in Resources */,
 				0438EFAA1B741C2800D506CC /* stp_card_cvc.png in Resources */,
 				0438EFAC1B741C2800D506CC /* stp_card_cvc@2x.png in Resources */,
@@ -1199,6 +1221,7 @@
 				049E84C61A605DE0000B66CD /* STPCheckoutViewController.m in Sources */,
 				049E84C71A605DE0000B66CD /* STPCheckoutInternalUIWebViewController.m in Sources */,
 				049E84C81A605DE0000B66CD /* STPColorUtils.m in Sources */,
+				438A71AF1BAB3A7A00B5F4E9 /* STPFormScanButton.m in Sources */,
 				049E84C91A605DE0000B66CD /* STPIOSCheckoutWebViewAdapter.m in Sources */,
 				049E84CA1A605DE0000B66CD /* STPOSXCheckoutWebViewAdapter.m in Sources */,
 				049E84CB1A605DE0000B66CD /* STPStrictURLProtocol.m in Sources */,
@@ -1226,6 +1249,7 @@
 				04CDB5181A5F30A700B854EE /* StripeError.m in Sources */,
 				04CDB4E21A5F30A700B854EE /* STPCheckoutOptions.m in Sources */,
 				04CDB5081A5F30A700B854EE /* STPAPIConnection.m in Sources */,
+				438A71AE1BAB3A7A00B5F4E9 /* STPFormScanButton.m in Sources */,
 				04CDB4F81A5F30A700B854EE /* STPOSXCheckoutWebViewAdapter.m in Sources */,
 				04CDB4EB1A5F30A700B854EE /* STPCheckoutInternalUIWebViewController.m in Sources */,
 				04CDB4FC1A5F30A700B854EE /* STPStrictURLProtocol.m in Sources */,

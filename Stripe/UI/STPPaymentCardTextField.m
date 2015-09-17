@@ -12,6 +12,7 @@
 #import "STPPaymentCardTextField.h"
 #import "STPPaymentCardTextFieldViewModel.h"
 #import "STPFormTextField.h"
+#import "STPFormScanButton.h"
 #import "STPCardValidator.h"
 
 #define FAUXPAS_IGNORED_IN_METHOD(...)
@@ -30,6 +31,8 @@
 @property(nonatomic, readwrite, weak)STPFormTextField *cvcField;
 
 @property(nonatomic, readwrite, weak)STPFormTextField *zipField;
+
+@property(nonatomic, readwrite, weak)STPFormScanButton *scanButton;
 
 @property(nonatomic, readwrite, strong)STPPaymentCardTextFieldViewModel *viewModel;
 
@@ -66,9 +69,14 @@ CGFloat const STPPaymentCardTextFieldDefaultPadding = 10;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
+    return [self initWithFrame:frame scanButtonEnabled:NO];
+}
+
+- (instancetype)initWithFrame:(CGRect)frame scanButtonEnabled:(BOOL)scanButtonEnabled {
     self = [super initWithFrame:frame];
     if (self) {
         [self commonInit];
+        _scanButtonEnabled = scanButtonEnabled;
     }
     return self;
 }
@@ -116,6 +124,13 @@ CGFloat const STPPaymentCardTextFieldDefaultPadding = 10;
     zipField.alpha = 0;
     self.zipField = zipField;
     
+    STPFormScanButton *scanButton = nil;
+    if (self.scanButtonEnabled) {
+        scanButton = [STPFormScanButton formScanButton];
+        scanButton.frame = CGRectZero;
+        self.scanButton = scanButton;
+    }
+    
     UIView *fieldsView = [[UIView alloc] init];
     fieldsView.clipsToBounds = YES;
     fieldsView.backgroundColor = [UIColor clearColor];
@@ -126,6 +141,10 @@ CGFloat const STPPaymentCardTextFieldDefaultPadding = 10;
     [self.fieldsView addSubview:cvcField];
     [self.fieldsView addSubview:expirationField];
     [self.fieldsView addSubview:numberField];
+    if (scanButton != nil) {
+        [self.fieldsView addSubview:scanButton];
+    }
+    
     [self addSubview:brandImageView];
 }
 
@@ -414,6 +433,16 @@ CGFloat const STPPaymentCardTextFieldDefaultPadding = 10;
     CGFloat zipX = CGRectGetMaxX(self.cvcField.frame);
     self.zipField.frame = CGRectMake(zipX, 0, zipWidth, self.frame.size.height);
     
+    if (self.scanButtonEnabled) {
+        if (!self.numberFieldShrunk) {
+            CGFloat scanBtnWidth = (CGRectGetMaxX(self.fieldsView.frame) - CGRectGetMaxX(self.numberField.frame));
+            CGFloat scanBtnHeight = CGRectGetMaxY(self.numberField.frame);
+            self.scanButton.frame = CGRectMake(CGRectGetMaxX(self.numberField.frame), 0, scanBtnWidth, scanBtnHeight);
+        }
+        else {
+            self.scanButton.frame = CGRectZero;
+        }
+    }
 }
 
 #pragma mark - private helper methods
@@ -554,10 +583,13 @@ typedef void (^STPNumberShrunkCompletionBlock)(BOOL completed);
     switch (state) {
         case STPCardValidationStateInvalid:
             textField.validText = NO;
+            self.scanButton.hidden = NO;
             break;
         case STPCardValidationStateIncomplete:
+            self.scanButton.hidden = NO;
             break;
         case STPCardValidationStateValid: {
+            self.scanButton.hidden = YES;
             [self selectNextField];
             break;
         }
@@ -586,6 +618,13 @@ typedef void (^STPNumberShrunkCompletionBlock)(BOOL completed);
         [self.delegate paymentCardTextFieldDidChange:self];
     }
     [self sendActionsForControlEvents:UIControlEventValueChanged];
+}
+
+- (IBAction)scanCardTapped:(id)sender {
+    if (self.delegate != nil &&
+        [self.delegate respondsToSelector:@selector(paymentCardTextField:triggerScanCard:)]) {
+        [self.delegate paymentCardTextField:self triggerScanCard:sender];
+    }
 }
 
 @end

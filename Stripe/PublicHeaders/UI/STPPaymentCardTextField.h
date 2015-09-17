@@ -29,6 +29,12 @@
  */
 - (void)paymentCardTextFieldDidChange:(nonnull STPPaymentCardTextField *)textField;
 
+/** 
+ Called when the user taps on the scan button shown inside the text field.
+ note: set STPPaymentCardTextField.scanButtonEnabled = YES to show the scan button inside the payment card text field.
+ */
+- (void)paymentCardTextField:(nonnull STPPaymentCardTextField *)textField triggerScanCard:(nonnull NSObject*)sender;
+
 @end
 
 
@@ -114,6 +120,11 @@
  */
 @property(nonatomic, getter=isEnabled) BOOL enabled;
 
+/** 
+ * Enable/disable scan button inside the text field. default = NO
+ */
+@property(nonatomic, getter=isScanButtonEnabled, readonly) BOOL scanButtonEnabled;
+
 /**
  *  The current card number displayed by the field. May or may not be valid, unless isValid is true, in which case it is guaranteed to be valid.
  */
@@ -143,6 +154,8 @@
  *  Convenience method to create a STPCard from the currently entered information. Will return nil if not valid.
  */
 @property(nonatomic, readonly, nullable) STPCard *card;
+
+
 
 @end
 
