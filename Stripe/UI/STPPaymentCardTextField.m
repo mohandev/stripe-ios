@@ -84,7 +84,7 @@ CGFloat const STPPaymentCardTextFieldDefaultPadding = 10;
 - (void)commonInit {
     
     self.borderColor = [self.class placeholderGrayColor];
-    self.cornerRadius = 5.0f;
+    self.cornerRadius = 0.0f;
     self.borderWidth = 1.0f;
 
     self.clipsToBounds = YES;
