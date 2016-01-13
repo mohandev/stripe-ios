@@ -40,9 +40,13 @@
 
 @property(nonatomic, assign)BOOL numberFieldShrunk;
 
+@property(nonatomic, readwrite, weak) UIView *bottomLineView;
+
 @end
 
-@implementation STPPaymentCardTextField
+@implementation STPPaymentCardTextField {
+    UIColor *_bottomLineColor;
+}
 
 @synthesize font = _font;
 @synthesize textColor = _textColor;
@@ -82,11 +86,12 @@ CGFloat const STPPaymentCardTextFieldDefaultPadding = 10;
 }
 
 - (void)commonInit {
+    self.bottomLineColor = [UIColor lightGrayColor];
     
-    self.borderColor = [self.class placeholderGrayColor];
+    self.borderColor = nil;
     self.cornerRadius = 0.0f;
-    self.borderWidth = 1.0f;
-
+    self.borderWidth = 0.0f;
+    
     self.clipsToBounds = YES;
     
     _viewModel = [STPPaymentCardTextFieldViewModel new];
@@ -105,13 +110,13 @@ CGFloat const STPPaymentCardTextFieldDefaultPadding = 10;
     numberField.tag = STPCardFieldTypeNumber;
     numberField.placeholder = [self.viewModel placeholder];
     self.numberField = numberField;
-
+    
     STPFormTextField *expirationField = [self buildTextField];
     expirationField.tag = STPCardFieldTypeExpiration;
     expirationField.placeholder = @"MM/YY";
     expirationField.alpha = 0;
     self.expirationField = expirationField;
-        
+    
     STPFormTextField *cvcField = [self buildTextField];
     cvcField.tag = STPCardFieldTypeCVC;
     cvcField.placeholder = @"CVC";
@@ -227,6 +232,15 @@ CGFloat const STPPaymentCardTextFieldDefaultPadding = 10;
     return _placeholderColor ?: [self.class placeholderGrayColor];
 }
 
+- (void)setBottomLineColor:(UIColor *)bottomLineColor {
+    _bottomLineColor = bottomLineColor;
+    self.bottomLineView.backgroundColor = _bottomLineColor;
+}
+
+- (UIColor *)bottomLineColor {
+    return _bottomLineColor;
+}
+
 - (void)setBorderColor:(UIColor * __nullable)borderColor {
     self.layer.borderColor = [[borderColor copy] CGColor];
 }
@@ -283,7 +297,7 @@ CGFloat const STPPaymentCardTextFieldDefaultPadding = 10;
 }
 
 - (STPFormTextField *)firstResponderField {
-
+    
     if ([self.viewModel validationStateForField:STPCardFieldTypeNumber] != STPCardValidationStateValid) {
         return self.numberField;
     } else if ([self.viewModel validationStateForField:STPCardFieldTypeExpiration] != STPCardValidationStateValid) {
@@ -421,7 +435,7 @@ CGFloat const STPPaymentCardTextFieldDefaultPadding = 10;
     CGFloat nonFragmentWidth = [self widthForCardNumber:[self.viewModel numberWithoutLastDigits]] - 8;
     CGFloat numberFieldX = self.numberFieldShrunk ? STPPaymentCardTextFieldDefaultPadding - nonFragmentWidth : 8;
     self.numberField.frame = CGRectMake(numberFieldX, 0, numberFieldWidth, self.frame.size.height);
-
+    
     CGFloat expirationWidth = [self widthForText:self.expirationField.placeholder];
     CGFloat expirationX = CGRectGetMaxX(self.numberField.frame) + STPPaymentCardTextFieldDefaultPadding;
     self.expirationField.frame = CGRectMake(expirationX, 0, expirationWidth, self.frame.size.height);
@@ -444,6 +458,9 @@ CGFloat const STPPaymentCardTextFieldDefaultPadding = 10;
         else {
             self.scanButton.frame = CGRectZero;
         }
+    }
+    if (self.bottomLineView == nil) {
+        [self addBottomLineWithThickness:0.5];
     }
 }
 
@@ -549,7 +566,7 @@ typedef void (^STPNumberShrunkCompletionBlock)(BOOL completed);
 }
 
 - (BOOL)textField:(STPFormTextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-
+    
     BOOL deletingLastCharacter = (range.location == textField.text.length - 1 && range.length == 1 && [string isEqualToString:@""]);
     if (deletingLastCharacter && [textField.text hasSuffix:@"/"] && range.location > 0) {
         range.location -= 1;
@@ -579,7 +596,7 @@ typedef void (^STPNumberShrunkCompletionBlock)(BOOL completed);
     }
     
     [self updateImageForFieldType:fieldType];
-
+    
     STPCardValidationState state = [self.viewModel validationStateForField:fieldType];
     textField.validText = YES;
     switch (state) {
@@ -597,7 +614,7 @@ typedef void (^STPNumberShrunkCompletionBlock)(BOOL completed);
         }
     }
     [self onChange];
-
+    
     return NO;
 }
 
@@ -627,6 +644,22 @@ typedef void (^STPNumberShrunkCompletionBlock)(BOOL completed);
         [self.delegate respondsToSelector:@selector(paymentCardTextField:triggerScanCard:)]) {
         [self.delegate paymentCardTextField:self triggerScanCard:sender];
     }
+}
+
+- (void)addBottomLineWithThickness:(CGFloat)thickness {
+    UIView *bottom = [[UIView alloc] initWithFrame:CGRectZero];
+    bottom.translatesAutoresizingMaskIntoConstraints = NO;
+    bottom.backgroundColor = self.bottomLineColor;
+    
+    [self addSubview:bottom];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[bottom(==thickness)]-(0)-|"
+                                                                options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                metrics:@{@"thickness": @(thickness)}
+                                                                  views:@{@"bottom": bottom}]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(0)-[bottom]-(0)-|"
+                                                                options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                metrics:nil
+                                                                  views:@{@"bottom":bottom}]];
 }
 
 @end

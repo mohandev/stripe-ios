@@ -68,18 +68,21 @@
  */
 @property(nonatomic, copy, null_resettable) IBInspectable UIColor *placeholderColor UI_APPEARANCE_SELECTOR IBInspectable;
 
+/** 1px bottom line color drawn below the control */
+@property (nonatomic, copy, nullable) UIColor * bottomLineColor;
+
 /**
- *  The border color for the field. Default is [UIColor lightGreyColor]. Can be nil (in which case no border will be drawn).
+ *  The border color for the field. Not used, as the border consists of the single bottom line!
  */
 @property(nonatomic, copy, nullable) IBInspectable UIColor *borderColor UI_APPEARANCE_SELECTOR IBInspectable;
 
 /**
- *  The width of the field's border. Default is 1.0.
+ *  The width of the field's border.Not used, as the border consists of the single bottom line!
  */
 @property(nonatomic, assign) IBInspectable CGFloat borderWidth UI_APPEARANCE_SELECTOR IBInspectable;
 
 /**
- *  The corner radius for the field's border. Default is 5.0.
+ *  The corner radius for the field's border. Not used, as the border consists of the single bottom line!
  */
 @property(nonatomic, assign) IBInspectable CGFloat cornerRadius UI_APPEARANCE_SELECTOR IBInspectable;
 
