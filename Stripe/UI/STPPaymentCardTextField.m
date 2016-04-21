@@ -431,7 +431,15 @@ CGFloat const STPPaymentCardTextFieldDefaultPadding = 10;
     self.brandImageView.frame = CGRectMake(STPPaymentCardTextFieldDefaultPadding, 0, self.brandImageView.image.size.width, self.frame.size.height);
     self.fieldsView.frame = CGRectMake(CGRectGetMaxX(self.brandImageView.frame), 0, self.bounds.size.width - CGRectGetMaxX(self.brandImageView.frame), self.frame.size.height);
     
-    CGFloat numberFieldWidth = [self widthForCardNumber:self.numberField.placeholder] - 4;
+    NSString *cardNumber = @"";
+    if ([self.viewModel validationStateForField:STPCardFieldTypeNumber] == STPCardValidationStateValid) {
+        cardNumber = self.viewModel.cardNumber;
+    }
+    else {
+        cardNumber = self.viewModel.placeholder;
+    }
+    
+    CGFloat numberFieldWidth = [self widthForCardNumber:cardNumber] - 4;
     CGFloat nonFragmentWidth = [self widthForCardNumber:[self.viewModel numberWithoutLastDigits]] - 8;
     CGFloat numberFieldX = self.numberFieldShrunk ? STPPaymentCardTextFieldDefaultPadding - nonFragmentWidth : 8;
     self.numberField.frame = CGRectMake(numberFieldX, 0, numberFieldWidth, self.frame.size.height);
